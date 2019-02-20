@@ -25,3 +25,9 @@ Spotify performs a proprietary [audio analysis](https://developer.spotify.com/do
 
 ![Figure 4](/images/Figure4.png)
 >*Figure 4: Example output audio features from Spotify
+
+# Constructing a model to get some recommendations
+With the acquisition of the audio features, we now have a time series dataset of different quantitative listening preferences that we can model. By choosing the day-of-week and time-of-day, we use a binary classifier (0, 1) for tracks played on that day either during that time (1) or not during that time (0) and employ a logistic regression to identify the most important audio features for the given day-of-week and time-of-day. The top 4 features are then fed as seed values into [Spotify’s Get Recommendations function](https://developer.spotify.com/documentation/web-api/reference/browse/get-recommendations/), using the 25th, 50th, and 75th percentiles as the minimum, target, and maximum values for each feature. This function also requires an input as a reference to base the recommendations on, either a genre, artist, track. For this, I included a dropdown menu with all 126 genres in Spotify to choose from. Future implementations will allow to search for an artist or track of interest, or sample from the most listened to artists or tracks during that day-of-week/ time-of-day. Once the track recommendations are made, this can then be saved as a playlist to the user’s account, by typing in a name for the playlist, and choosing to either make the playlist public or private. Figure 5 below is a ‘Detroit-techno’ playlist I made recently, which out of 10 tracks, I ended up adding 5 tracks to my library.
+
+![Figure 5](/images/Figure5.png)
+>*Figure 5: Sample playlist generated using Lastify (added 5/10 tracks to library)
